@@ -18,20 +18,36 @@ make build
 make deploy
 ```
 
-# Run with output
+# Usage
+```
+usage: aws_sso_url_generator.py [-h] [--json]
+
+    Generate a list of AWS SSO urls you can open in your browser.
+
+    Fzf Usage:
+        ./aws_sso_url_generator.py | fzf | awk '{print $NF}' |  xargs google-chrome
+
+options:
+  -h, --help  show this help message and exit
+  --json      Output in JSON format
 
 ```
-    docker run --rm -it \
-        -v /home/host_user/.aws:/home/user/.aws \
-        -e ORG_SSO_FILE=~/.aws/sso/cache/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.json \
-        hollingsworthsteven/aws-sso-url-generator:latest
-```
 
-# Run through FZF and open in browser
+# Run in normal mode and pipe through FZF and open in browser
+
 ```
     docker run --rm -it \
             -v /home/host_user/.aws:/home/user/.aws \
             -e ORG_SSO_FILE=~/.aws/sso/cache/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.json \
             hollingsworthsteven/aws-sso-url-generator:latest | \
         fzf | awk '{print $NF}' |  xargs google-chrome
+```
+
+# Run with json output
+
+```
+    docker run --rm -it \
+        -v /home/host_user/.aws:/home/user/.aws \
+        -e ORG_SSO_FILE=~/.aws/sso/cache/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.json \
+        hollingsworthsteven/aws-sso-url-generator:latest --json
 ```
