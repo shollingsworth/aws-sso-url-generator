@@ -15,3 +15,5 @@ build:
 
 deploy: build
 	docker push $(BASE):$(TAG)
+	docker tag $(BASE):$(TAG) $(BASE):latest
+	docker push $(BASE):latest
