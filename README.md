@@ -1,6 +1,7 @@
 Generate a list of AWS SSO urls for all accounts and permission sets you can open in your browser.
 
 [Source Code](https://github.com/shollingsworth/aws-sso-url-generator)
+[Inspired by](https://stackoverflow.com/a/72553317) Thanks Erwin!
 
 # Build
 
