@@ -190,8 +190,12 @@ async def fetch(session, pl: Dict[str, Any]) -> Tuple[AppInstance, Dict[str, Any
 def iter_app_instances() -> Iterable[AppInstance]:
     url = f"{BASE_URL}/instance/appinstances"
     r = requests.get(url, headers=HEADERS)
-    for i in r.json()["result"]:
-        yield AppInstance.from_dict(i)
+    dat = r.json()
+    try:
+        for i in dat["result"]:
+            yield AppInstance.from_dict(i)
+    except KeyError:
+        raise SystemExit(f"{url}\nreturned {r.status_code}\n{r.json()['message']}")
 
 
 async def json_output() -> Output:
